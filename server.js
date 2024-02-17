@@ -31,7 +31,7 @@ app.use(static) //used to be called router.use(). this new way of writing means 
 app.get("/", baseController.buildHome) 
 app.use("/inv", inventoryRoute)
 // error route
-app.use("/error", utilities.handleErrors(errorRoute))
+app.use("/error", utilities.errors(errorRoute))
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
   next({status: 404, message: 'SORRY FOR BEING BROKEN'})
