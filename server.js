@@ -12,6 +12,7 @@ const static = require("./routes/static")
 const expressLayouts = require("express-ejs-layouts")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require('./routes/inventoryRoute')
+const errorRoute = require('./routes/errorRoute')
 
 /* ***********************
  * View Engine and Templates
@@ -29,6 +30,8 @@ app.use(static) //used to be called router.use(). this new way of writing means 
 // Index route
 app.get("/", baseController.buildHome) 
 app.use("/inv", inventoryRoute)
+// error route
+app.use("/errors", utilities.error(errorRoute))
 
 
 /* ***********************
@@ -43,4 +46,19 @@ const host = process.env.HOST
  *************************/
 app.listen(port, () => {
   console.log(`app listening on ${host}:${port}`)
+})
+
+
+/* ***********************
+* Express Error Handler
+* Place after all other middleware
+*************************/
+app.use(async (err, req, res, next) => {
+  let nav = await utilities.getNav()
+  console.error(`Error at: "${req.originalUrl}": ${err.message}`)
+  res.render("errors/error", {
+    title: err.status || 'Server Error',
+    message: err.message,
+    nav
+  })
 })
