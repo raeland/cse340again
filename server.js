@@ -37,6 +37,21 @@ app.use(async (req, res, next) => {
   next({status: 404, message: 'SORRY FOR BEING BROKEN'})
 })
 //<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaHBqZGVoMTkyMmtrYjhoaHR3Yml6c3d4OTl1a3QzOHE5em1nM25oNCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/h58E0JsuK3h3d8B1do/giphy.gif"
+
+/* ***********************
+* Express Error Handler
+* Place after all other middleware
+*************************/
+app.use(async (err, req, res, next) => {
+  let nav = await utilities.getNav()
+  console.error(`Error at: "${req.originalUrl}": ${err.message}`)
+  res.render("errors/error", {
+    title: err.status || 'Server Error',
+    message: err.message,
+    nav
+  })
+})
+
 /* ***********************
  * Local Server Information
  * Values from .env (environment) file
@@ -52,16 +67,3 @@ app.listen(port, () => {
 })
 
 
-/* ***********************
-* Express Error Handler
-* Place after all other middleware
-*************************/
-app.use(async (err, req, res, next) => {
-  let nav = await utilities.getNav()
-  console.error(`Error at: "${req.originalUrl}": ${err.message}`)
-  res.render("errors/error", {
-    title: err.status || 'Server Error',
-    message: err.message,
-    nav
-  })
-})
