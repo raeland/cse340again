@@ -12,7 +12,8 @@ const static = require("./routes/static")
 const expressLayouts = require("express-ejs-layouts")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
-const errorRoute = require("./errors/errorRoute")
+const utilities = require("./utilities")
+const errorRoute = require("./routes/errorRoute")
 
 /* ***********************
  * View Engine and Templates
@@ -26,7 +27,6 @@ app.set("layout", "./layouts/layout") // not at views root
  * Routes
  *************************/
 app.use(static) //used to be called router.use(). this new way of writing means that the application itself will use THIS resource.
-
 // Index route
 app.get("/", baseController.buildHome) 
 app.use("/inv", inventoryRoute)
