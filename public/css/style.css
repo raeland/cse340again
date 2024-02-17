@@ -1,0 +1,194 @@
+/******* Change Box Model ***************/
+:root {
+  --font-family-sans-serif: 'Gill Sans', sans-serif;
+  --font-family-serif: 'Times New Roman', serif;
+  --main-bckgrnd-color: rgba(255, 255, 255, 1);
+  --main-border-color:rgba(6, 165, 57, 1);
+  --secondary-border-color:rgba(99, 95, 95, 0.5);
+  --accent-color1:rgba(6, 165, 57, 0.7);
+  --accent-color2:rgba(99, 95, 95, 0.2);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+h1 {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+h2 {
+  font-family: 'Times New Roman';
+}
+/******* body *******************************************************************/
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.siteName a {
+  font-size: 2em;
+  text-decoration: none;
+  color: black;
+}
+
+#tools {
+  text-align: right;
+}
+#tools a {
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+body {
+  background-image: url("../images/site/checkerboard.jpg");
+  background-repeat: repeat;
+  max-width: 800px;
+  margin: 1em auto;
+  border: 3px solid var(--main-bckgrnd-color);
+  border-radius: 1em;
+}
+/* hero */
+.hero {
+  display: grid;
+}
+
+.hero h2 {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.hero img {
+  grid-column: 1;
+  grid-row: 2;
+  padding-left: 3em;
+  width: 85%;
+}
+
+.hero-float {
+  grid-column: 1;
+  grid-row: 2;
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  padding: 1em 2em;
+  background-color:rgba(255, 255, 255, .8);
+  font-size: 1.5em;
+  color: var(--main-border-color);
+}
+
+.hero-float ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.stats ul{
+  list-style: none;
+  padding-left: 0;
+  font-size: 1em;
+}
+
+.hero-float button {
+  font-weight: bold;
+  color: var(--main-bckgrnd-color);
+  text-transform: uppercase;
+  justify-self: center;
+  padding: .8em;
+  background-color: var(--accent-color1);
+  border: 1px solid var(--accent-color2);
+}
+
+/** upgrades **/
+.upgrades-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.upgrades-grid div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5em;
+}
+
+.upgrades-grid picture {
+  width: 9em;
+  height: 6.75em;
+  margin: 0 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--accent-color1)
+}
+
+/** reviews **/
+.reviews li {
+  list-style-type: circle;
+}
+
+/******* header *****************************************************************/
+/* navigation */
+nav ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  text-align: center;
+  list-style: none;
+  padding: 0;
+  background-color: rgb(0, 0, 0);
+  color: var(--main-bckgrnd-color);
+}
+
+/******* text *******************************************************************/
+/******* format displays ********************************************************/
+/******* images *****************************************************************/
+/******* footer *****************************************************************/
+footer p {
+  margin-bottom: 0;
+  text-align: center;
+}
+
+/******* display sizes **********************************************************/
+
+@media screen and (min-width: 30em) {
+  body {
+    background-image: url("../images/site/checkerboard.jpg");
+    background-repeat: repeat;
+    max-width: 800px;
+    margin: 1em auto;
+    border: 3px solid var(--main-bckgrnd-color);
+    border-radius: 1em;
+  }
+
+  #wrapper {
+    background-color: var(--main-bckgrnd-color);
+    padding: 1em;
+    border-color: var(--main-border-color);
+  }
+  main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  main h1 {
+    grid-column: 1/3;
+    grid-row: 1/2;
+  }
+  
+  .hero {
+    grid-column: 1/3;
+  }
+  
+  .reviews {
+    grid-column: 2/3;
+    grid-row: 2;
+  }
+  
+  .upgrades {
+    grid-column: 1/2;
+    grid-row: 2;
+  }
+}

@@ -1,0 +1,3 @@
+//any notes to help with brain dumping
+
+pnpm run dev 
