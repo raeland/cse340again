@@ -11,8 +11,8 @@ const app = express()  //Express is a function here, assigned to the "APP" varia
 const static = require("./routes/static")
 const expressLayouts = require("express-ejs-layouts")
 const baseController = require("./controllers/baseController")
-const inventoryRoute = require('./routes/inventoryRoute')
-const errorRoute = require('./routes/errorRoute')
+const inventoryRoute = require("./routes/inventoryRoute")
+const errorRoute = require("./errors/errorRoute")
 
 /* ***********************
  * View Engine and Templates
@@ -31,7 +31,7 @@ app.use(static) //used to be called router.use(). this new way of writing means 
 app.get("/", baseController.buildHome) 
 app.use("/inv", inventoryRoute)
 // error route
-app.use("/errors", utilities.error(errorRoute))
+app.use("/error", utilities.handleErrors(errorRoute))
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
   next({status: 404, message: 'SORRY FOR BEING BROKEN'})
