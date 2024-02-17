@@ -1,4 +1,4 @@
-INSERT INTO account (
+INSERT INTO public.account (
 		account_first_name,
 		account_last_name,
 		account_email,
@@ -24,10 +24,10 @@ VALUES (
 		'Iam1ronM@n',
 		'Admin'
 	);
-DELETE FROM account
+DELETE FROM public.account
 WHERE first_name = 'Tony'
 	AND last_name = 'Stark';
-UPDATE inventory
+UPDATE public.inventory
 SET inv_description = REPLACE(
 		inv_description,
 		'small interiors',
