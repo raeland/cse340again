@@ -12,7 +12,7 @@ const static = require("./routes/static")
 const expressLayouts = require("express-ejs-layouts")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
-const utilities = require("./utilities")
+const utilities = require("./utilities/")
 const errorRoute = require("./routes/errorRoute")
 
 /* ***********************
@@ -28,9 +28,13 @@ app.set("layout", "./layouts/layout") // not at views root
  *************************/
 app.use(static) //used to be called router.use(). this new way of writing means that the application itself will use THIS resource.
 // Index route
-app.get("/", baseController.buildHome) 
+app.get("/", function(req, res){
+  res.render("index", {title: "Home"})
+})
+app.get("/", utilities.handleErrors(baseController.buildHome)) 
 app.use("/inv", inventoryRoute)
 // error route
+
 app.use("/error", utilities.errors(errorRoute))
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
@@ -45,6 +49,7 @@ app.use(async (req, res, next) => {
 app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav()
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
+  if(err.status == 404){ message = err.message} else {message = 'Oh no! There was a crash. Maybe try a different route?'}
   res.render("errors/error", {
     title: err.status || 'Server Error',
     message: err.message,
