@@ -12,7 +12,7 @@ const app = express()  //Express is a function here, assigned to the "APP" varia
 const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
-const utilities = require("./utilities/")
+const utilities = require("./utilities")
 //const errorRoute = require("./routes/errorRoute")
 
 /* ***********************
