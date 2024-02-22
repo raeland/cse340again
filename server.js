@@ -28,7 +28,7 @@ app.set("layout", "./layouts/layout") // not at views root
  *************************/
 app.use(static) //used to be called router.use(). this new way of writing means that the application itself will use THIS resource.
 // Index route
-app.get("/", baseController.buildHome)
+app.get("/",  utilities.handleErrors(baseController.buildHome))
 // Inventory route
 app.use("/inv", inventoryRoute)
 // File Not Found Route - must be last route in list
@@ -36,11 +36,7 @@ app.use("/inv", inventoryRoute)
 app.use(async (req, res, next) => {
   next({status: 404, message: 'SORRY FOR BEING BROKEN'})
 })
-/*
-{
-  res.render("index", {title: "Home"})
-})
-app.get("/", utilities.handleErrors(baseController.buildHome)) 
+/* app.get("/", utilities.handleErrors(baseController.buildHome)) 
 
 // error route
 router.get("/intentional", errorController.generateIntentionalErrorPage);
@@ -58,7 +54,7 @@ app.use("/errors", utilities.handleErrors(errorRoute))
 app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav();
   console.error(`Error at: "${req.originalUrl}": ${err.message}`);
-  //if(err.status == 404){ message = err.message} else {message = 'Oh no! There was a crash. Maybe try a different route?'}
+  if(err.status == 404){ message = err.message} else {message = 'Oh no! There was a crash. Maybe try a different route?'}
   res.render("errors/error", {
     title: err.status || 'Server Error',
     message: err.message,
