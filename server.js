@@ -12,8 +12,8 @@ const app = express()  //Express is a function here, assigned to the "APP" varia
 const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
-const utilities = require("./utilities/")
-const errorRoute = require("./routes/errorRoute")
+//const utilities = require("./utilities/")
+//const errorRoute = require("./routes/errorRoute")
 
 /* ***********************
  * View Engine and Templates
@@ -31,7 +31,11 @@ app.use(static) //used to be called router.use(). this new way of writing means 
 app.get("/", baseController.buildHome)
 // Inventory route
 app.use("/inv", inventoryRoute)
-
+// File Not Found Route - must be last route in list
+//Time to Test section of assignment "basic-errors"
+app.use(async (req, res, next) => {
+  next({status: 404, message: 'SORRY FOR BEING BROKEN'})
+})
 /*
 {
   res.render("index", {title: "Home"})
@@ -42,12 +46,9 @@ app.get("/", utilities.handleErrors(baseController.buildHome))
 router.get("/intentional", errorController.generateIntentionalErrorPage);
 
 app.use("/errors", utilities.handleErrors(errorRoute))
-// File Not Found Route - must be last route in list
+*/
 
-//Time to Test section of assignment "basic-errors"
-app.use(async (req, res, next) => {
-  next({status: 404, message: 'SORRY FOR BEING BROKEN'})
-})
+/*
 //<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaHBqZGVoMTkyMmtrYjhoaHR3Yml6c3d4OTl1a3QzOHE5em1nM25oNCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/h58E0JsuK3h3d8B1do/giphy.gif"
 */
 /* ***********************
