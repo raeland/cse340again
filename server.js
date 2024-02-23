@@ -32,7 +32,7 @@ app.get("/",  utilities.handleErrors(baseController.buildHome))
 // Inventory route
 app.use("/inv", utilities.handleErrors(inventoryRoute))
 // Intentional error route
-app.use("errors", utilities.handleErrors(errorRoute))
+app.use("/errors", utilities.handleErrors(errorRoute))
 // File Not Found Route - must be last route in list
 //Time to Test section of assignment "basic-errors"
 app.use(async (req, res, next) => {
