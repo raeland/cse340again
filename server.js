@@ -30,23 +30,15 @@ app.use(static) //used to be called router.use(). this new way of writing means 
 // Index route
 app.get("/",  utilities.handleErrors(baseController.buildHome))
 // Inventory route
-app.use("/inv", inventoryRoute)
+app.use("/inv", utilities.handleErrors(inventoryRoute))
+// Intentional error route
+app.use("errors", utilities.handleErrors(errorRoute))
 // File Not Found Route - must be last route in list
 //Time to Test section of assignment "basic-errors"
 app.use(async (req, res, next) => {
   next({status: 404, message: 'SORRY FOR BEING BROKEN'})
 })
-/* app.get("/", utilities.handleErrors(baseController.buildHome)) 
 
-// error route
-router.get("/intentional", errorController.generateIntentionalErrorPage);
-
-app.use("/errors", utilities.handleErrors(errorRoute))
-*/
-
-/*
-//<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaHBqZGVoMTkyMmtrYjhoaHR3Yml6c3d4OTl1a3QzOHE5em1nM25oNCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/h58E0JsuK3h3d8B1do/giphy.gif"
-*/
 /* ***********************
 * Express Error Handler
 * Place after all other middleware
