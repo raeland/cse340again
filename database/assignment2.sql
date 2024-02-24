@@ -27,6 +27,7 @@ VALUES (
 DELETE FROM public.account
 WHERE first_name = 'Tony'
 	AND last_name = 'Stark';
+	
 UPDATE public.inventory
 SET inv_description = REPLACE(
 		inv_description,

@@ -159,6 +159,7 @@ nav a:hover {
 /******* text *******************************************************************/
 /******* format displays ********************************************************/
 /******* images *****************************************************************/
+/*** vehichles by category ***/
 #inv-display {
   grid-column: 1/3;
   grid-row: 2/3;
@@ -181,6 +182,46 @@ nav a:hover {
 
 #inv-display a:hover {
   color: var(--accent-color1);
+}
+
+#inv-display img {
+  border: var(--accent-color1);
+  border-radius: .1em;
+  box-shadow: .2em .2em .2em var(--accent-color2);
+}
+
+/*** vehichles by category ***/
+
+#inv-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+#inv-wrap img {
+  border: var(--accent-color1);
+  border-radius: .1em;
+  box-shadow: .5em .5em .5em var(--accent-color2);
+}
+
+#inv-wrap span {
+  text-align: center;
+  padding-top: .3em;
+  font-size: 1.5em;
+  font-weight: bolder;
+  border-bottom: 2px solid var(--secondary-border-color);
+}
+
+#inv-wrap table {
+ border-collapse: collapse;
+ text-align: center;
+}
+
+#inv-wrap table th {
+  background-color: var(--accent-color2);
+}
+
+#inv-wrap td, #inv-wrap th {
+  padding: .5em;
 }
 
 /******* footer *****************************************************************/
