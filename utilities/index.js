@@ -65,23 +65,23 @@ Util.buildClassificationGrid = async function(data){
 * Build inventory detail view HTML
 * ************************************ */
 Util.buildVehicleWrap = async function(data) {
-  let wrap
+  let detail
   if (data) {
-    wrap = '<div id="inv-wrap">'
-    wrap += '<img src="' + data.inv_image + '" alt="' + data.inv_make + " " + data.inv_model
-    wrap += ' on CSE Motors">'
-    wrap += '<span>$' + new Intl.NumberFormat('en-us').format(data.inv_price) + '</span>'
-    wrap += '<table>' 
-    wrap += '<tr><th>Mileage</th><th>Color</th></tr>'
-    wrap += '<tr><td>' + new Intl.NumberFormat('en-us').format(data.inv_miles) + '</td></td>' + data.inv_color + '</td><tr>'
-    wrap += '<tr><td colspan="2">Description</th></tr>'
-    wrap += '<tr><td colspan="2">' + data.inv_description + '</th></tr>'
-    wrap += '</table>'
-    wrap += '</div>'
+    detail = '<div id="inv-wrap">'
+    detail += '<img src="' + data.inv_image + '" alt="' + data.inv_make + " " + data.inv_model
+    detail += ' on CSE Motors">'
+    detail += '<span>$' + new Intl.NumberFormat('en-us').format(data.inv_price) + '</span>'
+    detail += '<table>' 
+    detail += '<tr><th>Mileage</th><th>Color</th></tr>'
+    detail += '<tr><td>' + new Intl.NumberFormat('en-us').format(data.inv_miles) + '</td></td>' + data.inv_color + '</td><tr>'
+    detail += '<tr><td colspan="2">Description</th></tr>'
+    detail += '<tr><td colspan="2">' + data.inv_description + '</th></tr>'
+    detail += '</table>'
+    detail += '</div>'
   } else {
-    wrap += '<p class="notice">Sorry, vehicle not found.</p>'
+    detail += '<p class="notice">Sorry, vehicle not found.</p>'
   }
-  return wrap
+  return detail
 }
 
 /* ****************************************
