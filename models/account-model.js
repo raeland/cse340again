@@ -1,5 +1,5 @@
 const pool = require("../database/")
-const pool = require("./inventory-modle/")
+//const pool = require("./inventory-model/")
 
 /* *****************************
 *   Register new account

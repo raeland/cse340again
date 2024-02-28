@@ -1,6 +1,5 @@
 const utilities = require("../utilities/")
 const accountModel = require("../models/account-model/")
-const baseController = {}
 
 /* ****************************************
 *  Deliver login view
@@ -41,7 +40,7 @@ async function registerAccount(req, res) {
     if (regResult) {
       req.flash(
         "notice",
-        `Congratulations, you\'re registered ${account_firstname}. Please log in.`
+        `Congratulations, you're registered ${account_firstname}. Please log in.`
       )
       res.status(201).render("account/login", {
         title: "Login",
