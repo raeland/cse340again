@@ -6,6 +6,14 @@
 
 <%- messages() %>
 
+<% if (errors) { %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %>
+  
 <div id="loginRegister">
     <form id="loginForm" action="/account/register" method="post">
         <fieldset>
