@@ -6,7 +6,7 @@ const utilities = require("../utilities")
 const regValidate = require('../utilities/account-validation')
 
 // Route to show login form
-router.get("/login", utilities.handleErrors(accountController.buildLogin));
+router.get("/login", accountController.buildLogin);
 
 // Route to show registration form
 router.get("/register", utilities.handleErrors(accountController.buildRegister));
@@ -25,6 +25,6 @@ router.post(
     (req, res) => {
       res.status(200).send('login process')
     }
-  )   
+)   
 
 module.exports = router;

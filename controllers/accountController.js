@@ -1,6 +1,6 @@
 const utilities = require("../utilities/")
 const bcrypt = require("bcryptjs")
-//const accountModel = require("../models/account-model/")
+const accountModel = require("../models/account-model/")
 
 /* ****************************************
 *  Deliver login view
