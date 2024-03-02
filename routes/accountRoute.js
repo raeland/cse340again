@@ -12,7 +12,9 @@ router.get("/login", utilities.handleErrors(accountController.buildLogin));
 router.get("/register", utilities.handleErrors(accountController.buildRegister));
 
 // Route to process user registration
-router.post('/register', regValidate.registrationRules(),
+router.post(
+    '/register', 
+    regValidate.registrationRules(),
     regValidate.checkRegData,
     utilities.handleErrors(accountController.registerAccount)
 )

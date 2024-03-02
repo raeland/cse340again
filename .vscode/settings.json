@@ -1,4 +1,20 @@
 {
-    "sqltools.connections": [],
-    "liveServer.settings.port": 5502
+  "sqltools.connections": [
+    {
+      "pgOptions": {
+        "ssl": {
+          "rejectUnauthorized": true
+        }
+      },
+      "previewLimit": 50,
+      "server": "localhost",
+      "driver": "PostgreSQL",
+      "name": "render.com",
+      "database": "raedb5",
+      "username": "rsvdb5",
+      "password": "ddYkOVwA4mAJ3zzRRbJuyuh5H6xV5d1q",
+      "connectString": "postgres://rsvdb5:ddYkOVwA4mAJ3zzRRbJuyuh5H6xV5d1q@dpg-cn2qt5ljm4es73bfnfkg-a.oregon-postgres.render.com/raedb5"
+    }
+  ],
+  "liveServer.settings.port": 5502
 }
