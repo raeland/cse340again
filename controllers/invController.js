@@ -36,4 +36,38 @@ invCont.buildVehicleViewDetail = async function (req, res, next) {
   })
 }
 
+/* ***************************
+ *  Build ADD NEW Classification
+ * ************************** */
+invCont.addNewClassification = async function (req, res, next) {
+  const classification_name = req.params.classification_name
+  const data = await invModel.getClassifications(classification_name)
+  const grid = await utilities.addNewClassificationGrid(data)
+  let nav = await utilities.getNav()
+  const className = data[0].classification_name
+  res.render(".inventory/classification", {
+    title: className + " vehicles", 
+    nav,
+    grid,
+  })
+}
+
+//{ inv_make, ...} = req.body
+
+/* ***************************
+ *  Build ADD NEW car to Inventory
+ * ************************** */
+invCont.addNewVehicle = async function (req, res, next) {
+  const inv_model = req.params.vehicle_name
+  const wrap = await utilities.buildVehicleWrap(data)
+  let nav = await utilities.getNav()
+//  const inv_make = data.inv_make
+  const inv_model = data.inv_model
+  res.render("./inventory/detail", {
+    title: inv_make + " " + inv_model,
+    nav,
+    wrap,
+  })
+}
+
 module.exports = invCont

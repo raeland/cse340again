@@ -1,0 +1,22 @@
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+        res.redirect('/')
+    }
+    
+    <%# messages() %>
+
+   
+
+    <div id="loginContainer">
+    <form id="add-classification" action="/account/login" method="post">
+        <fieldset>
+            <p>the new classification name cannot contain a space or special character of any kind</p>
+            <label for="classification">New Classification Name: </label>
+            <input type="text" name="classification_name" id="classification_name" required value="<%locals.classification_name%>">
+            
+            <div id="loginBtn"><button type="submit" class="btn" value="Login">Add Classification</button></div>
+        </fieldset>
+    </form>
+    <p>No Account? <a href="/account/register">Create an Account Here</a></p>
+</div>
