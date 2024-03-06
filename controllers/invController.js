@@ -1,6 +1,5 @@
 const invModel = require("../models/inventory-model")
 const utilities = require("../utilities/")
-
 const invCont = {}
 
 /* ***************************
@@ -37,6 +36,18 @@ invCont.buildVehicleViewDetail = async function (req, res, next) {
 }
 
 /* ***************************
+ *  Build management view
+ * ************************** */
+invCont.buildManagementView = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("./inventory/management", {
+    title: "Vehicle Management",
+    nav,
+    errors: null,
+  } )
+}
+
+/* ***************************
  *  Build ADD NEW Classification
  * ************************** */
 invCont.addNewClassification = async function (req, res, next) {
@@ -58,7 +69,7 @@ invCont.addNewClassification = async function (req, res, next) {
  *  Build ADD NEW car to Inventory
  * ************************** */
 invCont.addNewVehicle = async function (req, res, next) {
-  const inv_model = req.params.vehicle_name
+  const inv_make = req.params.vehicle_name
   const wrap = await utilities.buildVehicleWrap(data)
   let nav = await utilities.getNav()
 //  const inv_make = data.inv_make

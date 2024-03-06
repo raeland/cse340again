@@ -1,6 +1,6 @@
 const utilities = require("../utilities/")
 const bcrypt = require("bcryptjs")
-const accountModel = require("../models/account-model/")
+const accountModel = require("../models/account-model")
 
 /* ****************************************
 *  Deliver login view
@@ -46,14 +46,13 @@ async function registerAccount(req, res) {
       errors: null,
     })
   }
-
-  const regResult = await accountModel.accountRegister(
+console.log('REGISTER ACCOUNT LINE 49');
+  const regResult = await accountModel.registerNewAccount(
     account_firstname,
     account_lastname,
     account_email,
     hashedPassword
   )
-  
     if (regResult) {
       req.flash(
         "notice",
