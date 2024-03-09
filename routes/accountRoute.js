@@ -10,7 +10,7 @@ const regValidate = require('../utilities/account-validation')
 router.get("/login", accountController.buildLogin);
 
 // Route to show registration form
-router.get("/register", utilities.handleErrors(accountController.buildRegister));
+router.get("/register", utilities.handleErrors(accountController.buildRegister))
 
 // Route to process user registration
 router.post(
@@ -29,4 +29,4 @@ router.post(
 )   
 
 
-module.exports = router;
+module.exports = router

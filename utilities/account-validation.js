@@ -27,12 +27,12 @@ validate.registrationRules = () => {
       .isEmail()
       .normalizeEmail() // refer to validator.js docs
       .withMessage("A valid email is required.")
-      //.custom(async (account_email) => {
-        //const emailExists = await accountModel.checkExistingEmail(account_email)
-        //if (emailExists){
-      //throw new Error("Email exists. Please log in or use different email")
-    //}
-    //})
+      .custom(async (account_email) => {
+        const emailExists = await accountModel.checkExistingEmail(account_email)
+        if (emailExists){
+      throw new Error("Email exists. Please log in or use different email")
+      }
+    })
     ,
     
       // password is required and must be strong password
@@ -102,5 +102,39 @@ validate.checkRegData = async (req, res, next) => {
         .withMessage("Password does not meet requirements."),
     ]
   }
+
+/*  **********************************
+ *  Adding NEW Classification Validation Rules
+ * ********************************* */
+validate.addNewClassRules = () => {
+  return [
+    body("classification_name")
+    .trim()
+    .isLength({ min: 1})
+    .isAlphanumeric()
+    .withMessage("Please provide a Classification name that matches the requested format."),
+  ]
+}
+
+/*  **********************************
+ *  Checking Classification Data Validation
+ * ********************************* */
+validate.checkAddClassData = async (req, res, next) => {
+  const { classification_name } = req.body
+  let errors = []
+  errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    res.render("inventory/add-classification", {
+      errors,
+      title: "Add New Classification",
+      nav,
+      classification_name,
+    })
+    return
+  }
+  next()
+}
+
 
 module.exports = validate

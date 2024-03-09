@@ -3,7 +3,7 @@ const utilities = require("../utilities/")
 const invCont = {}
 
 /* ***************************
- *  Build inventory by classification view
+ *  BUILD Inventory by Classification View
  * ************************** */
 invCont.buildByClassificationId = async function (req, res, next) {
   const classification_id = req.params.classificationId
@@ -19,7 +19,7 @@ invCont.buildByClassificationId = async function (req, res, next) {
 }
 
 /* ***************************
- *  Build view of detail for vehicle
+ *  BUILD Vehicle Detail View
  * ************************** */
 invCont.buildVehicleViewDetail = async function (req, res, next) {
   const inv_id = req.params.vehicleId
@@ -36,7 +36,7 @@ invCont.buildVehicleViewDetail = async function (req, res, next) {
 }
 
 /* ***************************
- *  Build management view
+ *  Build Management View
  * ************************** */
 invCont.buildManagementView = async function (req, res, next) {
   let nav = await utilities.getNav()
@@ -48,30 +48,56 @@ invCont.buildManagementView = async function (req, res, next) {
 }
 
 /* ***************************
- *  Build ADD NEW Classification
+ *  Build ADD NEW Classification View
  * ************************** */
-invCont.addNewClassification = async function (req, res, next) {
-  const classification_name = req.params.classification_name
-  const data = await invModel.getClassifications(classification_name)
-  const grid = await utilities.addNewClassificationGrid(data)
+invCont.buildAddClass = async function (req, res, next) {
   let nav = await utilities.getNav()
-  const className = data[0].classification_name
-  res.render(".inventory/classification", {
-    title: className + " vehicles", 
+  //const classification_name = req.params.classification_name
+  //const data = await invModel.getClassifications(classification_name)
+  //const grid = await utilities.addNewClassificationGrid(data)
+  //const className = data[0].classification_name
+  res.render(".inventory/add-classification", {
+    title: "Add New Classification", 
     nav,
-    grid,
+    errors: null,
   })
+}
+
+/* ***************************
+ *  ADD a NEW Class
+ * ************************** */
+invCont.addNewClassData = async function (req, res, next) {
+  const { classification_name } = req.body
+  const addClass = await invModel.addClass(classification_name)
+  let nav = await utilities.getNav()
+
+  if (addClass) {
+    req.flash("notice", `You have Successfully Added New Classification - ${classification_name}.`)
+    res.status(201).render("./inventory/add-classification", {
+      title: "Add New Classification",
+      nav,
+      errors: null,
+    })
+  } else {
+    req.flash("notice", "Sorry, the entered new classification process failed.")
+    res.status(501).render("./inventory/add-classification", {
+      title: "Add New Classification",
+      nav,
+      errors: null,
+    })
+  }
 }
 
 //{ inv_make, ...} = req.body
 
 /* ***************************
- *  Build ADD NEW car to Inventory
+ *  Build ADD NEW Inventory View
  * ************************** */
-invCont.addNewVehicle = async function (req, res, next) {
+invCont.buildNewInventory = async function (req, res, next) {
+  let nav = await utilities.getNav()
   const inv_make = req.params.vehicle_name
   const wrap = await utilities.buildVehicleWrap(data)
-  let nav = await utilities.getNav()
+
 //  const inv_make = data.inv_make
   const inv_model = data.inv_model
   res.render("./inventory/detail", {

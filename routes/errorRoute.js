@@ -3,6 +3,6 @@ const router = new express.Router()
 const errorController = require("../controllers/errorController")
 
 // Route to generate error page
-router.get("/intentional", errorController.generateIntentionalErrorPage);
+router.get("/intentional", errorController.generateIntentionalErrorPage)
 
-module.exports = router;
+module.exports = router
