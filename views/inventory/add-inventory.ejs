@@ -21,29 +21,29 @@
             <label for="inv_make">Vehicle Make: </label>
             <input type="text" name="inv_make" id="inv_make" required pattern="^[^\s\W]+$>" value="<%= locals.inv_make %>">
 
-            <label for="inv_make">Vehicle Model: </label>
+            <label for="inv_model">Vehicle Model: </label>
             <input type="text" name="inv_model" id="inv_model" required pattern="^[^\s\W]+$>" value="<%= locals.inv_model %>">
 
-            <label for="inv_make">Vehicle Color: </label>
+            <label for="inv_color">Vehicle Color: </label>
             <input type="text" name="inv_color" id="inv_color" required pattern="[A-Za-z]{3,}$" value="<%= locals.inv_color %>">
 
-            <label for="inv_make">Vehicle Year: </label>
+            <label for="inv_year">Vehicle Year: </label>
             <input type="text" name="inv_year" id="inv_year" required pattern="[0-9]{4}" value="<%= locals.inv_year %>">
             
-            <label for="inv_make">Vehicle Description: </label>
+            <label for="inv_description">Vehicle Description: </label>
             <input type="text" name="inv_description" id="inv_description" rows="3" cols="50" required><%= locals.inv_description %>
 
-            <label for="inv_make">Vehicle Image Link: </label>
+            <label for="inv_image">Vehicle Image Link: </label>
             <input type="text" name="inv_image" id="inv_image" required pattern="\/images\/vehicles\/./images/vehicles/" value="">
 
-            <label for="inv_make">Vehicle Thumbnail Link: </label>
+            <label for="inv_thumbnail">Vehicle Thumbnail Link: </label>
             <input type="text" name="inv_thumbnail" id="inv_thumbnail" required pattern="\/images\/vehicles\/./images/vehicles/" value="">
 
-            <label for="inv_make">Vehicle Price: </label>
-            <input type="text" name="inv_price" id="inv_price" required pattern="(\d{3})([\.])(\d{2})" value="<%= locals.inv_make %>">
+            <label for="inv_price">Vehicle Price: </label>
+            <input type="number" name="inv_price" id="inv_price" required pattern="(\d{3})([\.])(\d{2})" value="<%= locals.inv_make %>">
 
-            <label for="inv_make">Vehicle Mileage: </label>
-            <input type="text" name="inv_miles" id="inv_miles" required pattern="^[^\s\W]+$>" value="<%= locals.inv_make %>">
+            <label for="inv_miles">Vehicle Mileage: </label>
+            <input type="number" name="inv_miles" id="inv_miles" required pattern="^[^\s\W]+$>" value="<%= locals.inv_make %>">
 
             <button type="submit" class="btn" value="Add">Add New Inventory</button>
         </fieldset>
