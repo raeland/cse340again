@@ -94,13 +94,14 @@ invCont.addNewClassData = async function (req, res, next) {
  *  Build ADD NEW Inventory View
  * ************************** */
 invCont.buildNewInventory = async function (req, res, next) {
+  //const { }
   let nav = await utilities.getNav()
   const inv_make = req.params.vehicle_name
   const wrap = await utilities.buildVehicleWrap(data)
 
 //  const inv_make = data.inv_make
   const inv_model = data.inv_model
-  res.render("./inventory/detail", {
+  res.render("./inventory/add-inventory", {
     title: inv_make + " " + inv_model,
     nav,
     wrap,
