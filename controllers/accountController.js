@@ -75,7 +75,7 @@ console.log('REGISTER ACCOUNT LINE 49');
     }
   }
 
- /* ****************************************
+/* ****************************************
 *  Process Login Request
 * *************************************** */ 
 async function accountLogin(req, res) {
@@ -106,4 +106,4 @@ async function accountLogin(req, res) {
   }
 }
 
-  module.exports = { buildLogin, buildRegister, registerAccount }
+  module.exports = { buildLogin, buildRegister, accountLogin, registerAccount }
