@@ -51,7 +51,7 @@ async function addClass(classification_name) {
     const values = [classification_name]
     return await pool.query(sql, values)
   } catch (error) {
-      return error.message
+      return error.message("getClassificationName error" + error)
   }
 }
 
@@ -84,7 +84,7 @@ async function addNewInventory(
       classification_id]
     return await pool.query(sql, values)
   } catch (error) {
-      return error.message
+      return error.message("getNewInventory error" + error)
   }
 }
 

@@ -2,7 +2,7 @@
 <h1><%= title %></h1>
 <% } else {
     res.redirect('/')
-}
+} %>
 
 <%- messages() %>
 
@@ -16,7 +16,7 @@
 
 
     <div id="loginContainer">
-    <form id="add-classification" action="/inv/add-classification" method="post">
+    <form id="add-classification" action="/inventory/add-classification" method="post">
         <fieldset>
             <p>Name Must be Alphabetic Characters ONLY, cannot contain a space or special character of any kind</p>
             <label for="classification_name">New Classification Name: </label>

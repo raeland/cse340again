@@ -52,10 +52,10 @@ invCont.buildManagementView = async function (req, res, next) {
  * ************************** */
 invCont.buildAddClass = async function (req, res, next) {
   let nav = await utilities.getNav()
-  //const classification_name = req.params.classification_name
-  //const data = await invModel.getClassifications(classification_name)
-  //const grid = await utilities.addNewClassificationGrid(data)
-  //const className = data[0].classification_name
+  const classification_name = req.params.classification_name
+  const data = await invModel.getClassifications(classification_name)
+  const grid = await utilities.addNewClassificationGrid(data)
+  const className = data.classification_name
   res.render(".inventory/add-classification", {
     title: "Add New Classification", 
     nav,
@@ -68,7 +68,7 @@ invCont.buildAddClass = async function (req, res, next) {
  * ************************** */
 invCont.addNewClassData = async function (req, res, next) {
   const { classification_name } = req.body
-  const addClass = await invModel.addClass(classification_name)
+  const addNewClass = await invModel.addClass(classification_name)
   let nav = await utilities.getNav()
 
   if (addClass) {
@@ -95,6 +95,7 @@ invCont.addNewClassData = async function (req, res, next) {
  * ************************** */
 invCont.buildNewInventory = async function (req, res, next) {
   //const { }
+  const newInventory = await invModel.buildNewInventory(inv_model)
   let nav = await utilities.getNav()
   const inv_make = req.params.vehicle_name
   const wrap = await utilities.buildVehicleWrap(data)
