@@ -106,4 +106,4 @@ async function accountLogin(req, res) {
   }
 }
 
-  module.exports = { buildLogin, buildRegister, accountLogin, registerAccount }
+module.exports = { buildLogin, buildRegister, accountLogin, registerAccount }

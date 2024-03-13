@@ -1,0 +1,48 @@
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+        res.redirect('/')
+    } %>
+    
+    <%- messages() %>
+    
+    <% if (errors) { %>
+        <ul class="notice">
+        <% errors.array().forEach(error => { %>
+            <li><%= error.msg %></li>
+    <% }) %>
+        </ul>
+    <% } %>
+    
+        <div id="loginContainer">
+        <form id="updateForm" action="inv/update" method="post">
+            <fieldset>
+                <label for="classification_id">Classification</label>
+                <select name="classification_id" id="classification_id">
+                    <%- options %>
+                </select>
+
+                <label for="inv_make">Vehicle Make: </label>
+                <input type="text" name="inv_make" id="inv_make" 
+                    required pattern="^[^\s\W]+$>" value="<%= locals.inv_make %>">
+    
+                <label for="inv_model">Vehicle Model: </label>
+                <input type="text" name="inv_model" id="inv_model" 
+                    required pattern="^[^\s\W]+$>" value="<%= locals.inv_model %>">
+    
+                <label for="inv_year">Vehicle Year: </label>
+                <input type="text" name="inv_year" id="inv_year" 
+                    required pattern="[0-9]{4}" value="<%= locals.inv_year %>">
+    
+                <label for="inv_price">Vehicle Price: </label>
+                <input type="number" name="inv_price" id="inv_price" 
+                    required pattern="(\d{3})([\.])(\d{2})" value="<%= locals.inv_make %>">
+    
+                <button type="submit" class="btn" value="Add">Update Vehicle</button>
+                <input type="hidden" name="inv_id"
+                <% if (locals.inv_id) { %>
+                    value ="<%= locals.inv_id %>"
+                <% } %>>
+            </fieldset>
+        </form>
+    </div>
