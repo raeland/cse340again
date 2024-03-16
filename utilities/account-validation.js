@@ -1,6 +1,5 @@
 const utilities = require(".")
 const {body, validationResult} = require("express-validator")
-//const regValidate = require('../utilities/account-validation')
 const accountModel = require("../models/account-model")
 const validate = {}
 
@@ -123,7 +122,6 @@ validate.checkLoginData = async (req, res, next) => {
   next()
 }
 
-
 /*  **********************************
  *  Adding NEW Classification Validation Rules
  * ********************************* */
@@ -157,5 +155,38 @@ validate.checkAddClassData = async (req, res, next) => {
   next()
 }
 
+/*  **********************************
+ *  Adding NEW Inventory Validation Rules
+ * ********************************* */
+validate.addNewInvRules = () => {
+  return [
+    body("vehicle_name")
+    .trim()
+    .isLength({ min: 1})
+    .isAlphanumeric()
+    .withMessage("Please add Vehcile name that matches the requested format."),
+  ]
+}
+
+/*  **********************************
+ *  Checking Inventory Data Validation
+ * ********************************* */
+validate.checkAddInvData = async (req, res, next) => {
+  const { vehicle_name } = req.body
+  let errors = []
+  errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    res.render("inventory/add-inventory", {
+      errors,
+      title: "Add New Inventory",
+      nav,
+      vehicle_name,
+    })
+    return
+  }
+  next()
+}
+//validate.checkUpdateData
 
 module.exports = validate

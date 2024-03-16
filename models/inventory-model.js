@@ -36,8 +36,7 @@ async function getInventoryByInventoryId(inv_id) {
       [ inv_id ]
     )
     return data.rows[0]
-  } 
-  catch (error) {
+  } catch (error) {
     console.error("getInventoryById error" + error)
   }
 }
@@ -84,7 +83,7 @@ async function addInventory(
       classification_id]
     return await pool.query(sql, values)
   } catch (error) {
-      return error.message("getNewInventory error" + error)
+      return error.message("getInventory error" + error)
   }
 }
 
@@ -120,7 +119,7 @@ async function updateInventory(
           const data = await pool.query(sql, values)
           return data.rows[0]
       } catch (error) {
-          console.error("model error: " + error)
+          return error.message("model error: " + error)
   }
 }
 

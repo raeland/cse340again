@@ -20,7 +20,7 @@
         <fieldset>
             <p>Name Must be Alphabetic Characters ONLY, cannot contain a space or special character of any kind</p>
             <label for="classification_name">New Classification Name: </label>
-            <input type="text" name="classification_name" id="classification_name" required pattern="^[^\s\W]+$>">
+            <input type="text" name="classification_name" id="classification_name" required pattern="[a-zA-z]*" value="<%= locals.classification_name %>">
             <div id="loginBtn"><button type="submit" class="btn" value="Add">Add Classification</button></div>
         </fieldset>
     </form>

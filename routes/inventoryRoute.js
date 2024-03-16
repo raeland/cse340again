@@ -5,7 +5,6 @@ const utilities = require("../utilities")
 const invController = require("../controllers/invController")
 const validate = require("../utilities/account-validation")
 
-
 // Route to build inventory by classification view
 router.get("/type/:classificationId", utilities.handleErrors(invController.buildByClassificationId))
 
@@ -16,24 +15,22 @@ router.get("/detail/:vehicleId", utilities.handleErrors(invController.buildVehic
 router.get("/", utilities.handleErrors(invController.buildManagementView))
 
 // Route for New Classification
-router.get("/add-classification", utilities.handleErrors(invController.buildAddClass))
-
-router.post(
-    "/add-classification", 
-    validate.addNewClassRules(),
-    validate.checkAddClassData, 
-    utilities.handleErrors(invController.addClass)
-);
+router
+    .get("/add-classification", utilities.handleErrors(invController.buildAddClass))
+    .post("/add-classification", 
+       // validate.addNewClassRules(),
+        //validate.checkAddClassData, 
+        invController.addClass
+)
 
 // Route for Adding Vehicle Inventory
-router.get("/add-inventory", utilities.handleErrors(invController.buildNewInventory))
-   
-router.post(
-    "/add-inventory", 
-    //validate.addNewInvRules(),
-    //validate.checkAddInvData, 
-    utilities.handleErrors(invController.addInventory))
-
+router
+    .get("/add-inventory", utilities.handleErrors(invController.buildNewInventory))
+    .post("/add-inventory", 
+        //validate.addNewInvRules(),
+        //validate.checkAddInvData, 
+        utilities.handleErrors(invController.addInventory)
+)
 
 // Route to Create Table in MANAGEMENT view - modify inventories section
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventory))
@@ -43,9 +40,10 @@ router.get("/edit/:vehicleId", utilities.handleErrors(invController.buildEditInv
 
 // Route to UPDATE Vehicle Data
 router.post("/update/",
-    //validate.addNewInvRules(),
+    validate.addNewInvRules(),
     //validate.checkUpdateData,
-    utilities.handleErrors(invController.updateInventory))
+    utilities.handleErrors(invController.updateInventory)
+)
 
 // Route to DELETE Vehilce Data
 router.get("/delete/:vehicleId", utilities.handleErrors(invController.buildDeleteInventoryView))

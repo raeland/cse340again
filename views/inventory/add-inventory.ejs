@@ -15,7 +15,7 @@
 <% } %>
 
     <div id="loginContainer">
-    <form id="add-inventory" action="inv/add-inventory" method="post">
+    <form id="add-inventory" action="/inv/add-inventory" method="post">
         <fieldset>
             <label for="inv_make">Vehicle Make: </label>
             <input type="text" name="inv_make" id="inv_make" required pattern="^[^\s\W]+$>" value="<%= locals.inv_make %>">

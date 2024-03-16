@@ -41,24 +41,20 @@ invCont.buildVehicleViewDetail = async function (req, res, next) {
  * ************************** */
 invCont.buildManagementView = async function (req, res, next) {
   let nav = await utilities.getNav()
-    const classificationSelect = invModel.getInventoryByClassificationId()
+    //const classificationSelect = invModel.getInventoryByClassificationId()
     res.render("./inventory/management", {
-    title: "Vehicle Management",
+    title: "Inventory Management",
     nav,
     errors: null,
   } )
 }
 
 /* ***************************
- *  Build ADD NEW Classification View
+ *  Build ADD NEW Classification Form View
  * ************************** */
 invCont.buildAddClass = async function (req, res, next) {
   let nav = await utilities.getNav()
-  //const classification_name = req.params.classification_name
-  //const data = await invModel.getClassifications(classification_name)
-  //const grid = await utilities.addNewClassificationGrid(data)
-  //const className = data.classification_name
-  res.render(".inventory/add-classification", {
+  res.render("./inventory/add-classification", {
     title: "Add New Classification", 
     nav,
     errors: null,
@@ -69,14 +65,16 @@ invCont.buildAddClass = async function (req, res, next) {
  *  ADD a NEW Classification
  * ************************** */
 invCont.addNewClassData = async function (req, res, next) {
+  console.log ("addNewClass")
   const { classification_name } = req.body
-  const addNewClass = await invModel.addClass(classification_name)
+  const addClass = await invModel.addClass(classification_name)
   let nav = await utilities.getNav()
 
   if (addClass) {
-    req.flash("notice", `You have Successfully Added New Classification - ${classification_name}.`)
-    res.status(201).render("./inventory/add-classification", {
-      title: "Add New Classification",
+    req.flash("notice", 
+      `You have Successfully Added New Classification - ${classification_name}.`)
+    res.status(201).render("./inventory/management", {
+      title: "Inventory Management",
       nav,
       errors: null,
     })
@@ -240,7 +238,7 @@ if (updateResult) {
   const classSelect = await utilities.buildClassSelect(classification_id)
   const itemName = `${inv_make} ${inv_model}`
   req.flash("notice", "Sorry, the inserted Classification Failed.")
-  res.status(501).render("inventory/edit-inventory", {
+  res.status(501).render("./inventory/edit-inventory", {
     title: "Edit" + itemName,
     nav,
     options: classSelect,
@@ -286,8 +284,7 @@ invCont.buildDeleteInventoryView = async function (req, res, next) {
  * ************************** */
 invCont.deleteInventory = async function (req, res) {
   const inv_id = req.body
-
-const deleteResult = await invModel.deleteInventory(inv_id)
+  const deleteResult = await invModel.deleteInventory(inv_id)
 
 if (deleteResult) {
   req.flash("notice", "The Vehicle was Deleted Successfully."

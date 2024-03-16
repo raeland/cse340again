@@ -48,7 +48,7 @@ async function registerAccount(req, res) {
       errors: null,
     })
   }
-console.log('REGISTER ACCOUNT LINE 49');
+//console.log('REGISTER ACCOUNT LINE 49');
   const regResult = await accountModel.registerNewAccount(
     account_firstname,
     account_lastname,
