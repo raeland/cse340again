@@ -64,8 +64,8 @@ invCont.buildAddClass = async function (req, res, next) {
 /* ***************************
  *  ADD a NEW Classification
  * ************************** */
-invCont.addNewClassData = async function (req, res, next) {
-  console.log ("addNewClass")
+invCont.addClass = async function (req, res, next) {
+  //console.log ("addNewClass")
   const { classification_name } = req.body
   const addClass = await invModel.addClass(classification_name)
   let nav = await utilities.getNav()

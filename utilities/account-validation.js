@@ -188,5 +188,4 @@ validate.checkAddInvData = async (req, res, next) => {
   next()
 }
 //validate.checkUpdateData
-
 module.exports = validate
