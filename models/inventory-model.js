@@ -46,11 +46,11 @@ async function getInventoryByInventoryId(inv_id) {
  * ************************** */
 async function addClass(classification_name) {
   try {
-    const sql = "INSERT INTO public.classification (classification_name) VALUES ($1) RETURNING *"
-    const values = [classification_name]
-    return await pool.query(sql, values)
+    const sql = `INSERT INTO public.classification (classification_name) VALUES ($1) RETURNING *`
+    //const values = [classification_name]
+    return await pool.query(sql, {classification_name})
   } catch (error) {
-      return error.message("getClassificationName error" + error)
+      return error.message//("getClassificationName error" + error)
   }
 }
 

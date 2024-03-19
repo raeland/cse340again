@@ -27,12 +27,13 @@ invCont.buildVehicleViewDetail = async function (req, res, next) {
   const data = await invModel.getInventoryByInventoryId(inv_id)
   const wrap = await utilities.buildVehicleWrap(data)
   let nav = await utilities.getNav()
-  const inv_make = data.inv_make
-  const inv_model = data.inv_model
+  const title = inv_make + " " + inv_model
   res.render("./inventory/detail", {
-    title: inv_make + " " + inv_model,
+    title: title,
     nav,
+    detail,
     wrap,
+    errors: null,
   })
 }
 
@@ -121,7 +122,7 @@ invCont.addInventory = async function (req, res) {
     classification_id
   } = req.body
 
-  const addInv = await invModel.addInv(
+  const addInventory = await invModel.addInventory(
     inv_id,
     inv_make,
     inv_model,
@@ -138,7 +139,7 @@ if (addInv) {
   req.flash("notice", "You Have Added a New Vehicle Successfully."
   )
   res.status(201).render("./inventory/management", {
-    title: "Vehicle Management",
+    title: "Inventory Management",
     nav,
     errors: null,
     list: options,
