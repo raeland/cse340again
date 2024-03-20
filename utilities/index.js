@@ -27,7 +27,29 @@ Util.getNav = async function (req, res, next) {
 }
 
 /* **************************************
-* Dropdown Form Vehicle Management page
+* BUILD the Dropdown for the Form
+* ************************************ */
+Util.getClassDrop = async function (req, res, next) {
+  let data = await invModel.getClassifications()
+  let dropDown = '<select id= "classificationDropList">'
+  
+  data.rows.forEach((row) => {
+    list += 
+      '<option value="/:classification_id' +
+      row.classification_id +
+      '" title="See our inventory of ' +
+      row.classification_name +
+      ' vehicles">' +
+      row.classification_name +
+      "</a>"
+    list += "</li>"
+  })
+  list += "</ul>"
+  return list
+}
+
+/* **************************************
+* BUILD the Dropdown for the Form
 * ************************************ */
 Util.buildClassificationList = async function (classification_id = null) {
   let data = await invModel.getClassifications()
@@ -146,6 +168,8 @@ Util.checkLogin = (req, res, next) => {
     return res.redirect("/account/login")
   }
  }
+
+
 
  
 module.exports = Util

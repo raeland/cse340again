@@ -35,7 +35,7 @@ router.post(
   utilities.handleErrors(accountController.accountLogin)
 )
 
-router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildManagement))
+router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildAccountManagement))
 
 
 module.exports = router
