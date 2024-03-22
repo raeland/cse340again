@@ -28,10 +28,10 @@ Util.getNav = async function (req, res, next) {
 
 /* **************************************
 * BUILD the Dropdown for the Form
-* ************************************ */
+* ************************************ 
 Util.getClassDrop = async function (req, res, next) {
   let data = await invModel.getClassifications()
-  let dropDown = '<select id= "classificationDropList">'
+  let list = '<select id= "classificationDropList">'
   
   data.rows.forEach((row) => {
     list += 
@@ -46,12 +46,12 @@ Util.getClassDrop = async function (req, res, next) {
   })
   list += "</ul>"
   return list
-}
+}*/
 
 /* **************************************
 * BUILD the Dropdown for the Form
 * ************************************ */
-Util.buildClassificationList = async function (classification_id = null) {
+Util.buildClassSelect = async function (classification_id = null) {
   let data = await invModel.getClassifications()
   let classificationList =
     '<select name="classification_id" id="classificationList" required>'
@@ -169,7 +169,4 @@ Util.checkLogin = (req, res, next) => {
   }
  }
 
-
-
- 
 module.exports = Util

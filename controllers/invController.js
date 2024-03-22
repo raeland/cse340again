@@ -42,11 +42,12 @@ invCont.buildVehicleViewDetail = async function (req, res, next) {
  * ************************** */
 invCont.buildManagementView = async function (req, res, next) {
   let nav = await utilities.getNav()
-    //const classificationSelect = invModel.getInventoryByClassificationId()
+    const classificationSelect = invModel.getInventoryByClassificationId()
     res.render("./inventory/management", {
     title: "Inventory Management",
     nav,
     errors: null,
+    classificationSelect
   } )
 }
 
@@ -94,7 +95,7 @@ invCont.addClass = async function (req, res, next) {
  * ************************** */
 invCont.buildAddInventory = async function (req, res, next) {
   let nav = await utilities.getNav()
-  let options = await utilities.buildClassificationList()
+  let options = await utilities.buildClassSelect()
   res.render("./inventory/add-inventory", {
     title: "Add New Vehicle",
     nav,
@@ -109,7 +110,7 @@ invCont.buildAddInventory = async function (req, res, next) {
 invCont.addInventory = async function (req, res) {
   let nav = await utilities.getNav()
   //let options = await utilities.buildClassSelect()
-  let options = await utilities.buildClassificationList()
+  let options = await utilities.buildClassSelect()
   const {inv_id,
     inv_make,
     inv_model,
@@ -182,8 +183,8 @@ invCont.buildEditInvView = async function (req, res, next) {
   res.render("./inventory/edit-inventory", {
     title: "Edit " + itemName,
     nav,
-    classificationSelect: classificationSelect,
     errors: null,
+    classificationSelect: classificationSelect,
     inv_id: itemData.inv_id,
     inv_make: itemData.inv_make,
     inv_model: itemData.inv_model,
@@ -317,7 +318,7 @@ invCont.buildManagement = async function (req, res, next) {
     title: "Vehicle Management",
     nav,
     errors: null,
-    classificationSelect,
+    classificationSelect
     })
 }
 

@@ -6,29 +6,46 @@ const invController = require("../controllers/invController")
 const validate = require("../utilities/inventory-validation")
 
 // Route to build inventory by classification view
-router.get("/type/:classificationId", utilities.handleErrors(invController.buildByClassificationId))
+router
+    .get("/type/:classificationId", 
+        //authorizeAccess.authorizeAccess,
+        utilities.handleErrors(invController.buildByClassificationId))
 
 // Route to build vehicle view by detail
-router.get("/detail/:vehicleId", utilities.handleErrors(invController.buildVehicleViewDetail))
+router
+    .get("/detail/:vehicleId", 
+        //authorizeAccess.authorizeAccess,
+        utilities.handleErrors(invController.buildVehicleViewDetail))
 
 // Route to error
-router.get("/error/", utilities.handleErrors(invController.errorRoute))
+router
+    .get("/error/", 
+        //authorizeAccess.authorizeAccess,
+        utilities.handleErrors(invController.errorRoute))
 
 // Route for Management View
-router.get("/", utilities.handleErrors(invController.buildManagement))
+router
+    .get("/", 
+        //authorizeAccess.authorizeAccess,
+        utilities.handleErrors(invController.buildManagement))
 
 // Route for New Classification Form
 router
-    .get("/add-classification", utilities.handleErrors(invController.buildAddClass))
+    .get("/add-classification", 
+    //authorizeAccess.authorizeAccess,
+    utilities.handleErrors(invController.buildAddClass))
     .post("/add-classification", 
         validate.addClassRules(),
         //validate.checkAddClassData, 
-        invController.addClass
+        utilities.handleErrors(invController.addClass)
 )
 
 // Route for Adding Vehicle Inventory
 router
-    .get("/add-inventory", utilities.handleErrors(invController.buildAddInventory))
+    .get("/add-inventory", 
+        //authorizeAccess.authorizeAccess,
+        utilities.handleErrors(invController.buildAddInventory))
+    
     .post("/add-inventory", 
         //validate.addNewInvRules(),
         //validate.checkAddInvData, 
@@ -36,10 +53,16 @@ router
 )
 
 // Route to Create Table in MANAGEMENT view - modify inventories section
-router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+router
+    .get("/getInventory/:classification_id", 
+        //authorizeAccess.authorizeAccess,
+        utilities.handleErrors(invController.getInventoryJSON))
 
 // Route Modify Vehicle View
-router.get("/edit/:vehicleId", utilities.handleErrors(invController.buildEditInvView))
+router
+    .get("/edit/:vehicleId", 
+        //authorizeAccess.authorizeAccess,
+        utilities.handleErrors(invController.buildEditInvView))
 
 // Route to UPDATE Vehicle Data
 router.post("/update/",
@@ -49,7 +72,10 @@ router.post("/update/",
 )
 
 // Route to DELETE Vehilce Data
-router.get("/delete/:vehicleId", utilities.handleErrors(invController.buildDeleteInventoryView))
-router.post("/delete", utilities.handleErrors(invController.deleteInventory))
+router
+    .get("/delete/:vehicleId", 
+        //authorizeAccess.authorizeAccess,
+        utilities.handleErrors(invController.buildDeleteInventoryView))
+    .post("/delete", utilities.handleErrors(invController.deleteInventory))
 
 module.exports = router
