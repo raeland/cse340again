@@ -312,7 +312,7 @@ if (deleteResult) {
 invCont.buildManagement = async function (req, res, next) {
   let nav = await utilities.getNav()
   const data = await invModel.getInventoryByClassificationId()
-  const classificationSelect = await utilities.getClassDrop(data)
+  const classificationSelect = await utilities.buildClassSelect(data)
   //const classificationSelect = await utilities.buildClassificationList(data)
   res.render("./inventory/management", {
     title: "Vehicle Management",
