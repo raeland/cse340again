@@ -1,11 +1,11 @@
 <% if (title) { %>
     <h1><%= title %></h1>
     <% if (accountType == 'Client') { %>
-        <h2> Welcome <%- account_firstname %></h2>
-        <a href=<%- updateAccountLink %>>Update Your Account Information Here</a>
+        <h2> Welcome <%- accountName %></h2>
+        <a href=<%- updateAccount %>>Update Your Account Information Here</a>
     <% } else if(accountType == 'Employee' || accountType == 'Admin') { %>
-        <h2> Welcome <%- account_firstname %></h2>
-        <p><a href=<%- updateAccountLink %>>Update Your Account Here</a></p>
+        <h2> Welcome <%- accountName %></h2>
+        <p><a href=<%- updateAccount %>>Update Your Account Here</a></p>
         <p><a href="/inv/">Management Inventory</a></p>
     <% } %>
     <% } else {
@@ -13,11 +13,3 @@
     } %>
 
 <%- messages() %>
-
-<% if (errors) { %>
-    <ul class="notice">
-   <% errors.array().forEach(error => { %>
-     <li><%= error.msg %></li>
-  <%  }) %>
-   </ul>
-  <% } %>

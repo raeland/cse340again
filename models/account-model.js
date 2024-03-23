@@ -13,9 +13,9 @@ async function registerNewAccount(account_firstname, account_lastname, account_e
     }
   }
   
-/* **********************
+/* *****************************
  *   Check for existing email
- * ********************* */
+ * ************************** */
 async function checkExistingEmail(account_email){
   try {
     const sql = "SELECT * FROM account WHERE account_email = $1"
@@ -26,9 +26,9 @@ async function checkExistingEmail(account_email){
   }
 }
 
-/* **********************
+/* ****************************
  *   Return Account DATA using email address
- * ********************* */
+ * ************************* */
 async function getAccountByEmail(account_email) {
   try {
     const result = await pool.query(
@@ -39,4 +39,4 @@ async function getAccountByEmail(account_email) {
   }
 }
 
-  module.exports = { registerNewAccount, checkExistingEmail, getAccountByEmail }
+module.exports = { registerNewAccount, checkExistingEmail, getAccountByEmail }

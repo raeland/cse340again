@@ -1,6 +1,6 @@
 const utilities = require("../utilities/")
 const bcrypt = require("bcryptjs")
-const accountModel = require("../models/account-model")
+const acctModel = require("../models/account-model")
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
 
@@ -49,7 +49,7 @@ async function registerAccount(req, res) {
     })
   }
 //console.log('REGISTER ACCOUNT LINE 49');
-  const regResult = await accountModel.registerNewAccount(
+  const regResult = await acctModel.registerNewAccount(
     account_firstname,
     account_lastname,
     account_email,
@@ -81,7 +81,7 @@ async function registerAccount(req, res) {
 async function accountLogin(req, res) {
   let nav = await utilities.getNav()
   const { account_email, account_password } = req.body
-  const accountData = await accountModel.getAccountByEmail(account_email)
+  const accountData = await acctModel.getAccountByEmail(account_email)
   if (!accountData) {
     req.flash("notice", "Please check your credentials and try again.")
     res.status(400).render("account/login", {

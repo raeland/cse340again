@@ -13,6 +13,6 @@ account_email: happy@340.edu
 account_password: I@mAnEmplOy33
 
 account_firstname: Manager 
-account_lastname: User
+account_lastname: Admin
 account_email: manager@340.edu
 account_password: I@mAnAdm!n1stratOr

@@ -1,6 +1,6 @@
 const utilities = require(".")
 const {body, validationResult} = require("express-validator")
-const accountModel = require("../models/account-model")
+const acctModel = require("../models/account-model")
 const validate = {}
 
 /*  **********************************
@@ -27,7 +27,7 @@ validate.registrationRules = () => {
       .normalizeEmail() // refer to validator.js docs
       .withMessage("A valid email is required.")
       .custom(async (account_email) => {
-        const emailExists = await accountModel.checkExistingEmail(account_email)
+        const emailExists = await acctModel.checkExistingEmail(account_email)
         if (emailExists){
       throw new Error("Email exists. Please log in or use different email")
       }
@@ -82,7 +82,7 @@ validate.checkRegData = async (req, res, next) => {
         .normalizeEmail() // refer to validator.js docs
         .withMessage("A valid email is required.")
         .custom(async (account_email) => {
-          const emailExists = await accountModel.checkExistingEmail(account_email)
+          const emailExists = await acctModel.checkExistingEmail(account_email)
           if (!emailExists){
             throw new Error("Email exists. Please log in or use different email")
           }
@@ -187,5 +187,5 @@ validate.checkAddInvData = async (req, res, next) => {
   }
   next()
 }
-//validate.checkUpdateData
+
 module.exports = validate
