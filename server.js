@@ -64,7 +64,13 @@ app.use(static) //used to be called router.use(). this new way of writing means 
 app.get("/",  utilities.handleErrors(baseController.buildHome))
 // Inventory route
 app.use("/inv", utilities.handleErrors(inventoryRoute))
+// Account route
 app.use("/account", accountRoute)
+// Account Management route
+//app.use("/inv", utilities.handleErrors(managerRoute))
+
+app.use('/public/js', express.static('public/js', { 'Content-Type': 'application/javascript'}))
+
 // Intentional error route
 app.use("/errors", utilities.handleErrors(errorRoute))
 // File Not Found Route - must be last route in list

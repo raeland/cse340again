@@ -112,10 +112,32 @@ async function accountLogin(req, res) {
 async function buildAccountManagement(req, res, next) {
   let nav = await utilities.getNav()
   res.render("account/account-management", {
-    title: "Account",
+    title: "Account Management",
     nav,
     errors: null,
   })
 }
 
-module.exports = { buildLogin, buildRegister, accountLogin, registerAccount, buildAccountManagement }
+/* ****************************************
+*  BUILD Account Logging View
+* *************************************** */
+async function buildAccountLog(req, res, next) {
+  const account_email = req.params.account_email
+  let nav = await utilities.getNav()
+  let accountInfo = await utilities.getAccountType(account_email)
+  let accountType = accountInfo.account_type
+  let accountName = accountInfo.account_firstname + ' ' + account_lastname
+  let account_id = accountInfo.account_id
+  let updateAccount = "/account/update-account/" + account_id
+  res.render("account/showLogin", {
+    title: "You are Signed In!",
+    nav,
+    errors: null,
+    accountType,
+    accountName,
+    account_id,
+    updateAccount
+  })
+}
+
+module.exports = { buildLogin, buildRegister, accountLogin, registerAccount, buildAccountManagement, buildAccountLog }

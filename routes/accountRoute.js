@@ -12,6 +12,31 @@ router.get("/login", accountController.buildLogin);
 // Route to show registration form
 router.get("/register", utilities.handleErrors(accountController.buildRegister))
 
+// Route to show login status
+router
+    .get("/:account_email", 
+        utilities.checkLogin,
+        utilities.handleErrors(accountController.buildAccountLog))
+    .get("/update-info/:account_id",
+        utilities.checkLogin,
+        utilities.handleErrors(accountController.buildUpdateAccount))
+
+// Route to update password
+router
+    .post("/update-password/:account_id",
+        utilities.checkLogin,
+        utilities.handleErrors(accountController.updatePassword))
+
+// Route to update account        
+router
+    .post("/update-account/:account_id",
+        utilities.checkLogin,
+        utilities.handleErrors(accountController.updateAccount))    
+
+// Route to offer unable to edit
+    .get("/sorry",
+        utilities.handleErrors(accountController.editError))
+        
 // Route to process user registration
 router.post(
     "/register", 
@@ -36,6 +61,5 @@ router.post(
 )
 
 router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildAccountManagement))
-
 
 module.exports = router

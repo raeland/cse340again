@@ -28,6 +28,16 @@ module.exports = {
       throw error
     }
   },
+  async queryNoParam(text) {
+    try {
+      const res = await pool.query(text)
+      console.log("executed query", { text })
+      return res
+    } catch (error) {
+      console.error("error in query", { text })
+      throw error
+    }
+  },
 }
 } else {
   pool = new Pool({
