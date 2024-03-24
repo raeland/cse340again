@@ -47,8 +47,8 @@ router
         utilities.handleErrors(invController.buildAddInventory))
     
     .post("/add-inventory", 
-        //validate.addNewInvRules(),
-        //validate.checkAddInvData, 
+        validate.addNewInvRules(),
+        validate.checkAddInvData, 
         utilities.handleErrors(invController.addInventory)
 )
 
@@ -60,14 +60,14 @@ router
 
 // Route Modify Vehicle View
 router
-    .get("/edit/:vehicleId", 
+    .get("/edit/:invId", 
         //authorizeAccess.authorizeAccess,
-        utilities.handleErrors(invController.buildEditInvView))
+        utilities.handleErrors(invController.editVehicleForm))
 
 // Route to UPDATE Vehicle Data
 router.post("/update/",
-    //alidate.addNewInvRules(),
-    //validate.checkUpdateData,
+    validate.addNewInvRules(),
+    validate.checkUpdateData,
     utilities.handleErrors(invController.updateInventory)
 )
 

@@ -155,37 +155,4 @@ validate.checkAddClassData = async (req, res, next) => {
   next()
 }
 
-/*  **********************************
- *  Adding NEW Inventory Validation Rules
- * ********************************* */
-validate.addNewInvRules = () => {
-  return [
-    body("vehicle_name")
-    .trim()
-    .isLength({ min: 1})
-    .isAlphanumeric()
-    .withMessage("Please add Vehcile name that matches the requested format."),
-  ]
-}
-
-/*  **********************************
- *  Checking Inventory Data Validation
- * ********************************* */
-validate.checkAddInvData = async (req, res, next) => {
-  const { vehicle_name } = req.body
-  let errors = []
-  errors = validationResult(req)
-  if (!errors.isEmpty()) {
-    let nav = await utilities.getNav()
-    res.render("inventory/add-inventory", {
-      errors,
-      title: "Add New Inventory",
-      nav,
-      vehicle_name,
-    })
-    return
-  }
-  next()
-}
-
 module.exports = validate

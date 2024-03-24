@@ -93,23 +93,25 @@ async function accountLogin(req, res) {
     return
   }
   try {
-    if (await bcrypt.compare(account_password, accountData.account_password))
-    {
+    if (await bcrypt.compare(account_password, accountData.account_password)) {
       delete accountData.account_password
-      const accessToken = jwt.sign(accountData, process.env.
-        ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
+      const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 })
+      if(process.env.NODE_ENV === 'development') {
         res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
-        return res.redirect("/account/")
-    } 
-  } catch (error) {
-    return new Error('Access Forbidden')
-  }
-}
+        } else {
+          res.cookie("jwt", accessToken, { httpOnly: true, secure: true, maxAge: 3600 * 1000 })
+        }
+      return res.redirect("/account/")
+      }
+     } catch (error) {
+      return new Error('Access Forbidden')
+     }
+    }
 
 /* ****************************************
-*  BUILD Account Management
+*  Deliver Account Management View
 * *************************************** */
-async function buildAccountManagement(req, res, next) {
+async function accountManagement(req, res, next) {
   let nav = await utilities.getNav()
   res.render("account/account-management", {
     title: "Account Management",
@@ -117,6 +119,23 @@ async function buildAccountManagement(req, res, next) {
     errors: null,
   })
 }
+
+/*buildUpdateAccount
+updatePassword
+updateAccount
+editError
+
+/* ****************************************
+*  Deliver registration view
+* ***************************************
+async function buildUpdateAccount(req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("account/update-account", {
+    title: "Update Account",
+    nav,
+    errors: null,
+  })
+*/
 
 /* ****************************************
 *  BUILD Account Logging View
@@ -140,4 +159,4 @@ async function buildAccountLog(req, res, next) {
   })
 }
 
-module.exports = { buildLogin, buildRegister, accountLogin, registerAccount, buildAccountManagement, buildAccountLog }
+module.exports = { buildLogin, buildRegister, accountLogin, registerAccount, accountManagement, buildAccountLog }

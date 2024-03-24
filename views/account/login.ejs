@@ -15,15 +15,19 @@
   <% } %>
   
 <div id="loginContainer">
-    <form id="loginForm" action="/account/login" method="post">
+    <form id="loginForm" action="/account/login-user" method="post">
         <fieldset>
             <label for="email">Email Address: </label>
             <input type="email" name="account_email" id="email" required value="<%locals.account_email %>">
             <label for="password">Password
             <input type="password" name="account_password" id="account_password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"></label>
-            <div><i>Passwords must be minimum of 12 characters and include 1 capital letter, 1 number and 1 special character</i></div>
+            
+            <span>Passwords must be minimum of 12 characters and include 1 capital letter, 1 number and 1 special character</span>
+            
             <div id="pswdButton">Show Password</div>
-            <div id="loginBtn"><button type="submit" class="btn" value="Login">Login</button></div>
+            <div id="loginBtn">
+                <button type="submit" class="btn" value="Login">Login</button>
+            </div>
         </fieldset>
     </form>
     <p>No Account? <a href="/account/register">Create an Account Here</a></p>

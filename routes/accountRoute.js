@@ -1,16 +1,40 @@
 // Needed Resources 
 const express = require("express")
 const router = new express.Router() 
-const acctController = require("../controllers/accountController")
 const utilities = require("../utilities")
+const acctController = require("../controllers/accountController")
 const regValidate = require('../utilities/account-validation')
 
+// DEFAULT Route to /account/ root
+router
+    .get("/", 
+    utilities.checkLogin,
+    utilities.handleErrors(acctController.accountManagement))
 
 // Route to show login form
-router.get("/login", acctController.buildLogin);
+router
+    .get("/login", acctController.buildLogin);
 
+// Route to Process login Attempt
+router
+    .post(
+      "/login-user",
+      regValidate.loginRules(),
+      regValidate.checkLoginData,
+      utilities.handleErrors(acctController.accountLogin)
+  )
 // Route to show registration form
-router.get("/register", utilities.handleErrors(acctController.buildRegister))
+router
+    .get("/register", utilities.handleErrors(acctController.buildRegister))
+        
+// Route to process user registration
+router
+    .post(
+      "/register-user", 
+      regValidate.registrationRules(),
+      regValidate.checkRegData,
+      utilities.handleErrors(acctController.registerAccount)
+)
 
 // Route to show login status
 router
@@ -36,25 +60,6 @@ router
 // Route to offer unable to edit
     .get("/sorry",
         utilities.handleErrors(acctController.editError))
-        
-// Route to process user registration
-router.post(
-    "/register", 
-    regValidate.registrationRules(),
-    regValidate.checkRegData,
-    utilities.handleErrors(acctController.registerAccount)
-)
 
-router.post(
-  "/login",
-  regValidate.loginRules(),
-  regValidate.checkLoginData,
-  utilities.handleErrors(acctController.accountLogin)
-)
-
-router
-    .get("/", 
-    utilities.checkLogin, 
-    utilities.handleErrors(acctController.buildAccountManagement))
 
 module.exports = router

@@ -37,10 +37,10 @@
             <input type="text" name="inv_description" id="inv_description" rows="3" cols="50" required><%= locals.inv_description %>
 
             <label for="inv_image">Vehicle Image Link: </label>
-            <input type="text" name="inv_image" id="inv_image" required pattern="\/images\/vehicles\/./images/vehicles/" value="">
+            <input type="text" name="inv_image" id="inv_image" pattern="\/images\/vehicles\/./images/vehicles/" value="">
 
             <label for="inv_thumbnail">Vehicle Thumbnail Link: </label>
-            <input type="text" name="inv_thumbnail" id="inv_thumbnail" required pattern="\/images\/vehicles\/./images/vehicles/" value="">
+            <input type="text" name="inv_thumbnail" id="inv_thumbnail" pattern="\/images\/vehicles\/./images/vehicles/" value="">
 
             <label for="inv_price">Vehicle Price: </label>
             <input type="number" name="inv_price" id="inv_price" required pattern="(\d{3})([\.])(\d{2})" value="<%= locals.inv_make %>">
