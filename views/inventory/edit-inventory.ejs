@@ -15,7 +15,7 @@
     <% } %>
 
         <div id="loginContainer">
-        <form id="updateForm" action="inv/update" method="post">
+        <form id="updateForm" action="inv/update" method="post" id="updateForm">
             <fieldset>
                 <label for="classification_id">Classification</label>
                 <select name="classification_id" id="classification_id">
@@ -39,10 +39,13 @@
                     required pattern="(\d{3})([\.])(\d{2})" value="<%= locals.inv_make %>">
 
                 <button type="submit" class="btn" value="Add">Update Vehicle</button>
+                
                 <input type="hidden" name="inv_id"
                 <% if(locals.inv_id) { %>
                     value ="<%= locals.inv_id %>"
                 <% } %>>
+
+                <button type="submit" disabled>Update Vehicle</button>
             </fieldset>
         </form>
     </div>

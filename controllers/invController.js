@@ -272,14 +272,14 @@ if (updateResult) {
   )
   res.redirect("/inv/")
 } else {
-  const classSelect = await utilities.buildClassSelect(classification_id)
+  const options = await utilities.buildClassSelect(classification_id)
   //const classSelect = await utilities.buildClassificationList(classification_id)
   const itemName = `${inv_make} ${inv_model}`
   req.flash("notice", "Sorry, the inserted Classification Failed.")
   res.status(501).render("./inventory/edit-inventory", {
     title: "Edit" + itemName,
     nav,
-    options: classSelect,
+    options: options,
     errors: null,
     inv_id,
     inv_make,
